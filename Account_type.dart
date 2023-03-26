@@ -1,4 +1,5 @@
 import 'package:first_day_flutter/doctorprofile.dart';
+import 'package:first_day_flutter/first_admin.dart';
 import 'package:first_day_flutter/modules/login/first_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,43 +23,64 @@ class Account extends StatelessWidget {
               child: Center(child: Text('Choose Account Type',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold),)),
             ), SizedBox(height: 50,),
             Center(
-              child: Row(
-                children: [
-                  InkWell( onTap:(){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => FirstPage()),
-                    );},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(205),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('Images/pngtre.jpg' )
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        InkWell( onTap:(){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => FirstPage()),
+                          );},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(205),
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage('Images/pngtre.jpg' )
+                              ),
+                            ),width: 170,height: 350,),
+                        ),  SizedBox(width:12,),
+                        InkWell(onTap:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => FirstDoc()),
+                            );},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(205),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage('Images/30.jpg' ))
+                                ), width: 130,height:350,),
                         ),
-                      ),width: 170,height: 350,),
-                  ),  SizedBox(width:12,),
-                  InkWell(onTap:(){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => FirstDoc()),
-                      );},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(205),
-                          image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage('Images/30.jpg' ))
-                          ), width: 130,height:350,),
-                  )
-                ],
+                        InkWell(onTap:(){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => FirsAd()),
+                            );},
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(205),
+                                image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage('Images/ad.jpg' ))
+                                ), width: 130,height:350,),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [ SizedBox(width: 50,),
+                        Text('User',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold)), SizedBox(width: 80,),
+                        Text('Doctor',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold)),SizedBox(width: 40,),
+                        Text('Admin',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold)),
+                      ],
+                    )
+                  ],
+                ),
               ),),
-            Row(
-              children: [ SizedBox(width: 50,),
-                Text('User',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold)), SizedBox(width: 80,),
-                Text('Doctor',style: TextStyle(color:Colors.blue,fontSize: 30.0,fontWeight: FontWeight.bold)),
-              ],
-            )
           ],
         ),
       ),
