@@ -1,23 +1,22 @@
-import 'package:first_day_flutter/Ads.dart';
-import 'package:first_day_flutter/doctors.dart';
-import 'package:first_day_flutter/modules/archived_tasks/archived_tasks_screen.dart';
+import 'package:first_day_flutter/add_Advs.dart';
+import 'package:first_day_flutter/Questions.dart';
+import 'package:first_day_flutter/doctor_prof.dart';
 import 'package:first_day_flutter/patients.dart';
-import 'package:first_day_flutter/search.dart';
 import 'package:flutter/material.dart';
-
-class AdminProf extends StatefulWidget {
-  const AdminProf({Key? key}) : super(key: key);
+class DocProf extends StatefulWidget{
 
   @override
-  State<AdminProf> createState() => _AdminProfState();
+  State<StatefulWidget> createState() {
+    return  DocProfState ();
+  }
 }
-
-class _AdminProfState extends State<AdminProf> {
+class   DocProfState extends State<DocProf> {
   int currentIndex=0;
-  List<Widget>screens=[Ads(),Patients(),Sea()];
-  List<String>titles=['Advertisements','Users','Profile'];
+  List<Widget>screens=[Questions(),Patients(),Profile()];
+  List<String>titles=['Questions','Users','Profile'];
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar:BottomNavigationBar(
@@ -36,10 +35,12 @@ class _AdminProfState extends State<AdminProf> {
           });
         },
         items: [
-          BottomNavigationBarItem(label: "Advertisements", icon: Icon(Icons.newspaper_outlined,),),
+          BottomNavigationBarItem(label: "Questions", icon: Icon(Icons.question_answer,),),
           BottomNavigationBarItem(label: "Users", icon: Icon(Icons.person), ),
-          BottomNavigationBarItem(label: "Doctors", icon: Icon(Icons.health_and_safety_rounded),)
+          BottomNavigationBarItem(label: "Profile", icon: Icon(Icons.person),)
         ],),
     );
   }
 }
+
+

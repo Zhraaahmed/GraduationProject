@@ -1,4 +1,5 @@
 import 'package:first_day_flutter/Ads.dart';
+import 'package:first_day_flutter/pay.dart';
 import 'package:flutter/material.dart';
 
 class profSp extends StatefulWidget {
@@ -10,8 +11,8 @@ class profSp extends StatefulWidget {
 
 class _profSpState extends State<profSp> {
   int currentIndex=0;
-  List<Widget>screens=[Ads(),Ads()];
-  List<String>titles=['Advertisements'];
+  List<Widget>screens=[Ads(),Pay()];
+  List<String>titles=['Advertisements',"Payment"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

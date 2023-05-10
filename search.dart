@@ -258,12 +258,13 @@ class  SeaState extends State<Sea> {
                               trailing:InkWell(
                                   onTap:(){
                                     var fav=false;
+                                    print(fav);
                                     setState(() {
                                       fav=true;
                                     });
                                     print(fav);
                                   },
-                                  child: Icon(fav==false? Icons.favorite_border:Icons.favorite,color: Colors.blue,)) ,
+                                  child: Icon(fav==false? Icons.favorite:Icons.favorite_border,color: Colors.blue,)) ,
                               subtitle:Row(children: [Icon(Icons.star_half_outlined,color: Colors.blue,), Text(_foundDoctor[index]['reviews']),],)
                           ),
                             Text(_foundDoctor[index]['sub'],)],

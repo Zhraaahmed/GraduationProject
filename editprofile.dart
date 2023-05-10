@@ -1,8 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:first_day_flutter/modules/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
   const EditProfile({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  var emailController = TextEditingController();
+  var nameController = TextEditingController();
+  var genderController = TextEditingController();
+  var dbController = TextEditingController();
+  var name="";
+  var email="";
+  var DateOfBirth="";
+  var gender="";
+  var n="";var e="";var d="";var g="";
+  List users=[];
+  CollectionReference usersref=FirebaseFirestore.instance.collection("users");
+  getData()async{
+    var responsebody=await usersref.get();
+    responsebody.docs.forEach((element) {
+      setState(() {
+        users.add(element.data());
+      });
+
+    });
+    print(users);
+  }
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +76,23 @@ class EditProfile extends StatelessWidget {
                             Text("     Full Name",style: TextStyle(color:Colors.grey,),),
                             SizedBox(height: 10,),
 
-                            TextFormField(
+                            TextFormField(onTap: () {
+                              setState(() {
+                                name=nameController.text;
+                              });
+                              n=name;
+                              usersref.doc("W3sSuBHoIq9ZLR4uiOG8").update({
+                                "name":"${n}"
+                              });
+
+                            },
+                              controller: nameController,
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(45),
                                     borderSide: BorderSide(width: 20),
-                                  )),),])),
+                                  )),
+                            ),])),
 
 
                   Form(
@@ -59,7 +103,16 @@ class EditProfile extends StatelessWidget {
                             Text("     Email",style: TextStyle(color: Colors.grey,fontSize:15)),
                             SizedBox(height: 10,),
 
-                            TextFormField(
+                            TextFormField(onTap: () {
+                              setState(() {
+                                email=emailController.text;
+                              });
+                              e=email;
+                              usersref.doc("W3sSuBHoIq9ZLR4uiOG8").update({
+                                "email":"${e}"
+                              });
+
+                            },controller: emailController,
                               decoration: InputDecoration(
 
                                   suffixIcon: Icon(Icons.email),
@@ -75,7 +128,16 @@ class EditProfile extends StatelessWidget {
                             SizedBox(height: 10,),
                             Form(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  TextFormField(
+                                  TextFormField(onTap: () {
+                                    setState(() {
+                                      gender=genderController.text;
+                                    });
+                                    g=gender;
+                                    usersref.doc("W3sSuBHoIq9ZLR4uiOG8").update({
+                                      "Gender":"${g}"
+                                    });
+
+                                  },controller:genderController,
                                     decoration: InputDecoration(
                                         suffixIcon: Icon(Icons.arrow_drop_down),
                                         border: OutlineInputBorder(
@@ -91,7 +153,16 @@ class EditProfile extends StatelessWidget {
                                   SizedBox(height: 10,),
                                   Form(child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      TextFormField(
+                                      TextFormField(onTap: () {
+                                        setState(() {
+                                         DateOfBirth=dbController.text;
+                                        });
+                                        d=DateOfBirth;
+                                        usersref.doc("W3sSuBHoIq9ZLR4uiOG8").update({
+                                          "db":"${d}"
+                                        });
+
+                                      },controller: dbController,
 
                                         decoration: InputDecoration(
                                             suffixIcon: Icon(Icons.date_range),

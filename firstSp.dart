@@ -1,15 +1,15 @@
-import 'package:first_day_flutter/AdminProfile.dart';
-import 'package:first_day_flutter/Log_Ad.dart';
-import 'package:first_day_flutter/log_doc.dart';
-import 'package:first_day_flutter/modules/login/login_screen.dart';
-import 'package:first_day_flutter/modules/login/signup_page.dart';
-import 'package:first_day_flutter/sign_ad.dart';
-import 'package:first_day_flutter/sign_doc.dart';
+import 'package:first_day_flutter/logSp.dart';
+import 'package:first_day_flutter/signSp.dart';
 import 'package:flutter/material.dart';
 
-class FirsAd extends StatelessWidget {
-  const  FirsAd({Key? key}) : super(key: key);
+class firstSp extends StatefulWidget {
+  const firstSp({Key? key}) : super(key: key);
 
+  @override
+  State<firstSp> createState() => _firstSpState();
+}
+
+class _firstSpState extends State<firstSp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +43,7 @@ class FirsAd extends StatelessWidget {
                 child: MaterialButton(onPressed:(){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SignAd()),
+                    MaterialPageRoute(builder: (context) => signSp()),
                   );
                 } ,child: Text('Sign Up',style: TextStyle(color: Colors.white),),),
               ),SizedBox(height: 15,),
@@ -59,7 +59,7 @@ class FirsAd extends StatelessWidget {
                 child: MaterialButton(onPressed:(){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LogAdmin()),
+                    MaterialPageRoute(builder: (context) => logSp()),
                   );
 
 

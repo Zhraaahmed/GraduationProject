@@ -1,5 +1,7 @@
+import 'package:first_day_flutter/Account_type.dart';
 import 'package:first_day_flutter/UserInfo.dart';
 import 'package:first_day_flutter/layout/home_layout.dart';
+import 'package:first_day_flutter/modules/login/first_page.dart';
 import 'package:first_day_flutter/modules/new_tasks/new_tasks_screen.dart';
 import 'package:first_day_flutter/weeklyReport.dart';
 import 'package:flutter/material.dart';
@@ -84,9 +86,9 @@ class NavBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Policies'),
-            onTap: () => null,
+            leading: Icon(Icons.arrow_back),
+            title: Text('Back'),
+            onTap: () => HomeLayout(),
           ),
           Divider(),
           ListTile(
@@ -95,7 +97,7 @@ class NavBar extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomeLayout()),
+                MaterialPageRoute(builder: (context) => Account()),
               );
             },
           ),
