@@ -1,21 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_day_flutter/AdminProfile.dart';
-import 'package:first_day_flutter/Log_Ad.dart';
+import 'package:first_day_flutter/logSp.dart';
+import 'package:first_day_flutter/profSp.dart';
 import 'package:flutter/material.dart';
 
-class SignAd extends StatefulWidget {
-  const SignAd({Key? key}) : super(key: key);
+class signSp extends StatefulWidget {
+  const signSp({Key? key}) : super(key: key);
 
   @override
-  State<SignAd> createState() => _SignAdState();
+  State<signSp> createState() => _signSpState();
 }
 
-class _SignAdState extends State<SignAd> {
-  var emailController = TextEditingController();
-  final auth = FirebaseAuth.instance;
-  var passwordController = TextEditingController();
-  var password, UserName, email;
-  bool isPassword = true;
+class _signSpState extends State<signSp> {
   showLoading(context){
     return showDialog(context: context,
         builder: (context){
@@ -33,6 +28,11 @@ class _SignAdState extends State<SignAd> {
         });
 
   }
+  var emailController=TextEditingController();
+  var password,UserName,email;
+  final auth = FirebaseAuth.instance;
+  var passwordController=TextEditingController();
+  bool isPassword=true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -50,12 +50,12 @@ class _SignAdState extends State<SignAd> {
                 ),
                 Center(
                     child: Text(
-                  'Sign Up',
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold),
-                )),
+                      'Sign Up',
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.bold),
+                    )),
                 SizedBox(
                   height: 20,
                 ),
@@ -127,12 +127,12 @@ class _SignAdState extends State<SignAd> {
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconData != null
                           ? IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isPassword = !isPassword;
-                                });
-                              },
-                              icon: Icon(Icons.remove_red_eye))
+                          onPressed: () {
+                            setState(() {
+                              isPassword = !isPassword;
+                            });
+                          },
+                          icon: Icon(Icons.remove_red_eye))
                           : null,
                     )),
                 SizedBox(
@@ -171,12 +171,12 @@ class _SignAdState extends State<SignAd> {
                       prefixIcon: Icon(Icons.lock),
                       suffixIcon: IconData != null
                           ? IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isPassword = !isPassword;
-                                });
-                              },
-                              icon: Icon(Icons.remove_red_eye))
+                          onPressed: () {
+                            setState(() {
+                              isPassword = !isPassword;
+                            });
+                          },
+                          icon: Icon(Icons.remove_red_eye))
                           : null,
                     )),
                 SizedBox(
@@ -195,13 +195,13 @@ class _SignAdState extends State<SignAd> {
                       showLoading(context);
                       if (_formKey.currentState!.validate()) {
                         UserCredential currentUser =
-                            await auth.createUserWithEmailAndPassword(
-                                email: emailController.text,
-                                password: passwordController.text);
+                        await auth.createUserWithEmailAndPassword(
+                            email: emailController.text,
+                            password: passwordController.text);
                         print(currentUser.user);
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => AdminProf()),
+                          MaterialPageRoute(builder: (context) => profSp()),
                         );
                       }
                       if (_formKey.currentState!.validate()) {
@@ -238,7 +238,7 @@ class _SignAdState extends State<SignAd> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => LogAdmin()),
+                                    builder: (context) => logSp()),
                               );
                             },
                             child: Text('Login'))),

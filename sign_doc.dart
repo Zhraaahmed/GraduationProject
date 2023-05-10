@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:first_day_flutter/doctorprofile.dart';
 import 'package:first_day_flutter/log_doc.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,10 @@ class SignDoc extends StatefulWidget {
 }
 
 class _SignDocState extends State<SignDoc> {
+  var password,UserName,email;
   var emailController=TextEditingController();
-
   var passwordController=TextEditingController();
-
+  final auth = FirebaseAuth.instance;
   bool isPassword=true;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -43,12 +44,17 @@ class _SignDocState extends State<SignDoc> {
                   AutovalidateMode.onUserInteraction,
                   controller: emailController,
                   onFieldSubmitted: (value){
+                    email=value;
                     print(value);
                   },onChanged: (value){
                   print(value);
                 },
                   validator: (String? value) {
-                    if (value!.isEmpty) return "E-mail must be not empty";
+                    if (value!.isEmpty)
+                      return "E-mail must be not empty";
+                    else if (value.length <= 5) {
+                      return "E-mail must be not be less than 19 characters";
+                    }
                   },
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -64,12 +70,17 @@ class _SignDocState extends State<SignDoc> {
                     controller: passwordController,
                     obscureText: true,
                     onFieldSubmitted: (value){
+                      password=value;
                       print(value);
                     },onChanged: (value){
                   print(value);
                 },
                     validator: (String? value) {
-                      if (value!.isEmpty) return "password must be not empty";
+                      if (value!.isEmpty)
+                        return "Password must be not empty";
+                      else if (value.length <= 5) {
+                        return "Password must be not be less than 7 characters";
+                      }
                     },
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
@@ -96,7 +107,11 @@ class _SignDocState extends State<SignDoc> {
                   print(value);
                 },
                     validator: (String? value) {
-                      if (value!.isEmpty) return "You Must Conirm Password";
+                      if (value!.isEmpty)
+                        return "Password must be not empty";
+                      else if (value.length <= 5) {
+                        return "Password must be Confirmed";
+                      }
                     },
                     keyboardType: TextInputType.visiblePassword,
                     decoration: InputDecoration(
@@ -119,11 +134,17 @@ class _SignDocState extends State<SignDoc> {
                   ),
 
                   width: double.infinity,
-                  child: MaterialButton(onPressed:(){
+                  child: MaterialButton(onPressed:()async{
+                    if (_formKey.currentState!.validate()) {
+                      UserCredential currentUser =
+                      await auth.createUserWithEmailAndPassword(
+                          email: emailController.text,
+                          password: passwordController.text);
+                      print(currentUser.user);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => DocProf()),
-                    );
+                    );}
                     if (_formKey.currentState!.validate()) {
                       print(emailController.text);
                       print(passwordController.text);

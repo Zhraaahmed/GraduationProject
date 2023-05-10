@@ -1,16 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:first_day_flutter/AdminProfile.dart';
-import 'package:first_day_flutter/sign_ad.dart';
+import 'package:first_day_flutter/profSp.dart';
+import 'package:first_day_flutter/signSp.dart';
 import 'package:flutter/material.dart';
 
-class LogAdmin extends StatefulWidget {
-  const LogAdmin({Key? key}) : super(key: key);
+class logSp extends StatefulWidget {
+  const logSp({Key? key}) : super(key: key);
 
   @override
-  State<LogAdmin> createState() => _LogAdminState();
+  State<logSp> createState() => _logSpState();
 }
 
-class _LogAdminState extends State<LogAdmin> {
+class _logSpState extends State<logSp> {
   var emailController=TextEditingController();
   var password,UserName,email;
   final auth = FirebaseAuth.instance;
@@ -122,12 +122,12 @@ class _LogAdminState extends State<LogAdmin> {
                           email: emailController.text,
                           password: passwordController.text);
                       print(currentUser.user);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AdminProf()),
-                    );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => profSp()),
+                      );
 
-                  }} ,child: Text('Sign in',style: TextStyle(color: Colors.white),),),
+                    }} ,child: Text('Sign in',style: TextStyle(color: Colors.white),),),
                 ),
 
                 SizedBox(height: 15,),
@@ -160,7 +160,7 @@ class _LogAdminState extends State<LogAdmin> {
                       child: TextButton(onPressed:(){
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignAd()),
+                          MaterialPageRoute(builder: (context) => signSp()),
                         );
                       }
                           , child: Text('Sign Up'))),

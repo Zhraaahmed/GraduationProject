@@ -1,5 +1,6 @@
 
 import 'package:curved_progress_bar/curved_progress_bar.dart';
+import 'package:first_day_flutter/Account_type.dart';
 import 'package:first_day_flutter/UserInfo.dart';
 import 'package:first_day_flutter/comment.dart';
 import 'package:first_day_flutter/drawer.dart';
@@ -33,14 +34,18 @@ class _QuestionsState extends State<Questions> {
                     'https://thevideoink.com/wp-content/uploads/2021/11/wysiwyg-uploads_1569586526901-doctor.jpg'),
               ),
               SizedBox(
-                width: 196,
+                width: 202,
               ),
               InkWell(
                   onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Account()),
+                    );
                   },
                   child: Icon(
-                    Icons.notification_add,
-                    size: 40,
+                    Icons.exit_to_app,
+                    size: 36,
                     color: Colors.blue,
                   )),
             ]),
