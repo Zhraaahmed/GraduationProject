@@ -9,6 +9,7 @@ import 'package:first_day_flutter/rad.dart';
 import 'package:first_day_flutter/rof.dart';
 import 'package:flutter/material.dart';
 import 'package:first_day_flutter/doctors.dart';
+import 'package:flutter/material.dart';
 class Sea extends StatefulWidget{
 
   @override
@@ -17,11 +18,7 @@ class Sea extends StatefulWidget{
 
   }
 }
-
 class  SeaState extends State<Sea> {
-  int favorite=0;
-  int currentIndex=0;
-  int i=0;
   List doctors=[];
   CollectionReference doctorsref=FirebaseFirestore.instance.collection("doctors");
   getData()async{
@@ -34,9 +31,22 @@ class  SeaState extends State<Sea> {
     });
     print(doctors);
   }
-
- List<Widget>loc=[docInfo(),Abd()];
-  bool fav=false;
+  bool fav=true;
+  int i=0;
+  int i1=1;
+  int i2=2;
+  int i3=3;
+  int i4=4;
+  int i5=5;
+  int i6=6;
+  int i7=7;
+  int i8=8;
+  int current=0;
+  int h=0;
+  List<Widget>loc=[docInfo(),Abd(),nag(),kh(),mos(),rad(),rof(),ah()];
+  List<int>num=[0,1,2,3,4,5,6,7,8];
+  var selectedindex =2;
+  int favorite=0;
   final List<Map<String, dynamic>> data =[
     {
       "name": "Dr. Shams Ali",
@@ -44,17 +54,15 @@ class  SeaState extends State<Sea> {
       "star": 0,
       "sub":"Inner specialty  -  fifth settlement hospital",
       "favorite":0,
-      "image": "Images/1.jpg",
-      "n":1,
+      "image": "Images/1.jpg","n":1
     },
     {
-      "name": "Dr. Abdelrahman Mahmoud ",
+      "name": "Dr. Abdelrahman Mahmoude ",
       "reviews":"reviews",
       "star": 0,
       "sub": "Ear ans nose specialty - Minia hospital",
       "favorite":0,
-      "image": "Images/2.jpg",
-      "n":2,
+      "image": "Images/2.jpg","n":2
     },
     {
       "name": "Dr. Nage Abdelsatar ",
@@ -62,8 +70,7 @@ class  SeaState extends State<Sea> {
       "star": 0,
       "sub": "Orthopedic specialty      -  Alex hospital",
       "favorite":0,
-      "image": "Images/3.jpg",
-      "n":3,
+      "image": "Images/3.jpg","n":3
     },
     {
       "name": "Dr. Khadiga Shaban ",
@@ -71,8 +78,7 @@ class  SeaState extends State<Sea> {
       "star": 0,
       "sub": " Specializing in Obstetrics and Gynecology -  Minia hospital",
       "favorite":0,
-      "image": "Images/4.jpg",
-      "n":4,
+      "image": "Images/4.jpg","n":4
     },
     {
       "name": "Dr. Mostafa Talat ",
@@ -80,8 +86,7 @@ class  SeaState extends State<Sea> {
       "star": 0,
       "sub": "Eye specialty  - Fayum hospital",
       "favorite":0,
-      "image": "Images/5.jpg",
-    "n":5,
+      "image": "Images/5.jpg","n":5
 
     },
     {
@@ -91,7 +96,7 @@ class  SeaState extends State<Sea> {
       "sub": "Urology specialty  - Zagazig hospital",
       "favorite":0,
       "image": "Images/6.jpg",
-      "n":6,
+      "n":"6"
 
     },
     {
@@ -101,8 +106,7 @@ class  SeaState extends State<Sea> {
       "sub": " Specializing in general and Plastic Surgery   - Minia hospital",
       "favorite":0,
       "image": "Images/7.jpg",
-    "n":7,
-
+      "n":7
     },
     {
       "name": "Dr. Ahlam Eid ",
@@ -110,8 +114,7 @@ class  SeaState extends State<Sea> {
       "star": 0,
       "sub": "Dental specialty  - New Cairo hospital",
       "favorite":0,
-      "image": "Images/8.jpg",
-    "n":8,
+      "image": "Images/8.jpg","n":8
 
     }
   ];
@@ -119,9 +122,9 @@ class  SeaState extends State<Sea> {
   List<Map<String, dynamic>> _foundDoctor = [];
   @override
   initState() {
-      getData();
     // at the beginning, all users are shown
     _foundDoctor = data;
+    getData();
     super.initState();
   }
 // This function is called whenever the text field changes
@@ -144,190 +147,141 @@ class  SeaState extends State<Sea> {
     });
   }
 
-  List<Widget>locs=[docInfo(),Abd(),nag(),kh(),mos(),rad(),rof(),ah()];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text("Search         ", style: TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 25, color: Colors.black))),
-        backgroundColor: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text(" Search         ", style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 25, color: Colors.black))),
+          backgroundColor: Colors.white,
 
-        bottom: PreferredSize(
-          preferredSize:const Size(4,60),
-          child:  Column(
-              children: [Container(
-                height: 50,
-                width: 375,
-                margin: const EdgeInsets.all(10),
-                child: TextFormField(
-                  onChanged: (value) => _runFilter(value),
-                  onFieldSubmitted: (covariant){
-                    setState(() {
-                    });
+          bottom: PreferredSize(
+            preferredSize:Size(4,60),
+            child:  Column(
+                children: [Container(
+                  height: 50,
+                  width: 375,
+                  margin: EdgeInsets.all(10),
+                  child: TextFormField(
+                    onChanged: (value) => _runFilter(value),
+                    onFieldSubmitted: (covariant){
+                      setState(() {
+                      });
 
-                  },
-                  cursorColor: Colors.cyan,
-                  decoration: InputDecoration(
-                      disabledBorder: InputBorder.none,
-                      prefixText: "Dr.",
-                      focusColor: Colors.grey,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(60),borderSide: const BorderSide(width: 20,color: Colors.black)),
-                      prefixIcon:  const Icon(Icons.search),
-                      suffixIcon: Container(child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,mainAxisSize: MainAxisSize.min,
-                        children: [const Icon(Icons.tune),const Text("   ") ,const Icon(Icons.keyboard_voice),const Text("  ")],),)
+                    },
+                    cursorColor: Colors.cyan,
+                    decoration: InputDecoration(
+                        disabledBorder: InputBorder.none,
+                        focusColor: Colors.grey,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(60),borderSide: BorderSide(width: 20,color: Colors.black)),
+
+                        prefixIcon:  Icon(Icons.search),
+                        suffixIcon: Container(child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,mainAxisSize: MainAxisSize.min,
+                          children: [Icon(Icons.tune),Text("   ") ,Icon(Icons.keyboard_voice),Text("  ")],),)
+                    ),
                   ),
-                ),),
 
 
 
-              ] )
-          ,),
 
-      ),
-      body:  Container(color:Colors.indigo[50],
-        child: InkWell(onTap: (){
-        },
-          child: InkWell(
-            onTap: (){},
-            child: ListView.builder(
-                itemCount:data.length ,
-                itemBuilder: (context, ins){
-                  print(ins);
-                  return ListData(data: data[ins],);
-                }),
-          ),
+
+                ),
+
+
+
+                ] )
+            ,),
+
         ),
+        body:Container(color:Colors.indigo[50],
+          child: _foundDoctor.isNotEmpty
+              ?  ListView.builder(
+              itemCount: _foundDoctor.length,
+              itemBuilder: (context, index) => Card(
+                  child: InkWell(onTap: (){
+                    print(index);
+                    if(index==0){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[0],)
+                      );
+
+                    }  if(index==1){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[1],)
+                      );
+
+                    }  if(index==2){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[2],)
+                      );
+
+                    }  if(index==3){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[3],)
+                      );
+
+                    }  if(index==4){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[4],)
+                      );
+
+                    }  if(index==5){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[5],)
+                      );
+
+                    }  if(index==6){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[6],)
+                      );
+
+                    }  if(index==7){
+                      Navigator.push( context,
+                          MaterialPageRoute(builder: (context) =>loc[7],)
+                      );
+
+                    }
+                  },
+                    child: Row(children: [
+
+                      ColoredBox(color:Colors.white),
+                      Expanded(
+                        child: Image.asset(_foundDoctor[index]['image'],width: 500,height:100),
+                        flex: 1,
+                      ),
+                      Expanded( flex: 3,
+                        child: Column(
+                          children: [ListTile(title: Text(_foundDoctor[index]['name']),
+                              trailing:InkWell(
+                                  onTap:(){
+                                    var fav=false;
+                                    setState(() {
+                                      fav=true;
+                                    });
+                                    print(fav);
+                                  },
+                                  child: Icon(fav==false? Icons.favorite_border:Icons.favorite,color: Colors.blue,)) ,
+                              subtitle:Row(children: [Icon(Icons.star_half_outlined,color: Colors.blue,), Text(_foundDoctor[index]['reviews']),],)
+                          ),
+                            Text(_foundDoctor[index]['sub'],)],
+
+                        ),
+
+                      )]),
+                  )
+              )
+          )
+              : const Text(
+            'No results found Please try with diffrent search',
+            style: TextStyle(fontSize: 24),
+          ),)
+
+
+
       ),
     );
 
   }}
-class ListData extends StatefulWidget{
-  final data ;
-
-  ListData({this.data});
-
-  @override
-  State<ListData> createState() => _ListDataState();
-}
-
-class _ListDataState extends State<ListData> {
-  List doctors=[];
-  CollectionReference doctorsref=FirebaseFirestore.instance.collection("doctors");
-  getData()async{
-    var responsebody=await doctorsref.get();
-    responsebody.docs.forEach((element) {
-      setState(() {
-        doctors.add(element.data());
-      });
-
-    });
-    print(doctors);
-  }
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-  bool fav=true;
-  int i=0;
-  int i1=1;
-  int i2=2;
-  int i3=3;
-  int i4=4;
-  int i5=5;
-  int i6=6;
-  int i7=7;
-  int i8=8;
-  int current=0;
-  int h=0;
-  List<Widget>loc=[docInfo(),Abd(),nag(),kh(),mos(),rad(),rof(),ah()];
-  List<int>num=[0,1,2,3,4,5,6,7,8];
-  @override
-  Widget build(BuildContext context){
-    return Card(
-        child: InkWell(onTap: (){
-          setState(() {
-            current=current+1;
-            h=num[current];
-          });
-          print(widget.data['n']);
-          if(widget.data['n']==1){
-            Navigator.push( context,
-                    MaterialPageRoute(builder: (context) =>loc[0],)
-                  );
-
-          } if(widget.data['n']==2){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[1],)
-            );
-
-          }
-          if(widget.data['n']==3){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[2],)
-            );
-
-          }
-          if(widget.data['n']==4){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[3],)
-            );
-
-          }
-          if(widget.data['n']==5){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[4],)
-            );
-
-          }
-          if(widget.data['n']==6){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[5],)
-            );
-          }
-          if(widget.data['n']==7){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[6],)
-            );
-          }
-          if(widget.data['n']==8){
-            Navigator.push( context,
-                MaterialPageRoute(builder: (context) =>loc[7],)
-            );
-
-          }
-         //   Navigator.push(
-        //      context,
-        //      MaterialPageRoute(builder: (context) =>loc[current],)
-        //  );
-        },
-          child: Row(children: [
-            const ColoredBox(color:Colors.white),
-            Expanded(
-              child: Image.asset("${widget.data['image']}",width: 500,height:100),
-              flex: 1,
-            ),
-            Expanded( flex: 3,
-              child: Column(
-                children: [InkWell(
-                  child: ListTile(title: Text("${widget.data['name']}"),
-                      trailing:InkWell(
-                          onTap:(){
-                        fav=false;
-                        print(fav);
-                       },
-                        child: Icon(fav==true? Icons.favorite_border:Icons.favorite,color: Colors.blue,)) ,
-                      subtitle:Row(children: [const Icon(Icons.star_half_outlined,color: Colors.blue,), Text("${widget.data['reviews']}"),],)
-                  ),
-                ),
-                  Text("${widget.data['sub']}",)],
-              ),
-
-            )]),
-        )
-
-    );
-  }
-}
